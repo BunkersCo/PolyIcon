@@ -1,0 +1,28 @@
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+handlers:
+
+- url: /$
+  static_files: index.html
+  upload: index\.html
+  secure: always
+
+- url: /(.*).(html|js|json|css)
+  static_files: \1.\2
+  upload: (.*)\.(html|js|json|css)
+  secure: always
+
+skip_files:
+  - ^(.*/)?#.*#$
+  - ^(.*/)?.*~$
+  - ^(.*/)?.*\.py[co]$
+  - ^(.*/)?.*/RCS/.*$
+  - ^(.*/)?\..*$
+  - gulpfile.js
+  - (package|bower).json
+  - test*
+  - node_modules/(.*)
+  - bower_components/[^/]+/bower_components/.*$
+  - bower_components/(.+/)+(test/|demo/|README|AUTHORS|CONTRIBUTING|PATENTS|Makefile)
